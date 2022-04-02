@@ -1,15 +1,14 @@
 [package]
+edition = "2021"
 name = "albanian-virus"
 version = "0.1.0"
-edition = "2021"
 
 [dependencies.windows]
 version = "0.34.0"
 features = [
-    "alloc",
-    "Win32_Globalization",
-    "Win32_Foundation",
-    "Win32_System",
-    "Win32_UI_WindowsAndMessaging",
+    "alloc", 
+    "Win32_Globalization", 
+    "Win32_Foundation", 
+    "Win32_System", 
+    "Win32_UI_WindowsAndMessaging"
 ]
-

@@ -32,7 +32,7 @@ pub enum Messages {
 }
 
 impl Messages {
-    pub fn translate(&self, locale: &Locale) -> &'static str {
+    pub fn translate(&self, locale: &Locale) -> String {
         match *self {
             Self::InfoText => {
                 match *locale {
@@ -58,27 +58,30 @@ impl Messages {
                         Veliké poděkováni tobě, S posdravem albánsky výrus
                     "#
                 }
+                    .split("                        ") // TODO find a better approach
+                    .collect::<Vec<&str>>()
+                    .join(" ") 
             }
             Self::InfoTitle => {
                 match *locale {
                     Locale::English => "Virus Is Has Detected In Yor Windows XP OS",
                     Locale::Slovak => "V tvojom Systéme Windows XP SP3 a viššie sa deteknul výrus",
                     Locale::Czech => "Tvůj Operační sistém Windows XP sp2 a višší sa vyskytol vírus"
-                }
+                }.to_string()
             }
             Self::ApologyText => {
                 match *locale {
                     Locale::English => "I am very sorry for bother, please continue with yours daily activities",
                     Locale::Slovak => "Ospravedlňujem sa za rušenie vašej činnosti, pokračujte ďalej, prosím",
                     Locale::Czech => "Vospravedlňuju-se-li za rušení vaší aktivity, prosím-li pokračujte déle"
-                }
+                }.to_string()
             }
             Self::ApologyTitle => {
                 match *locale {
                     Locale::English => "Dearest apologies",
                     Locale::Slovak => "Najsrdečnejšie ospravldnenie",
                     Locale::Czech => "To nejsrdečnejší ospravedlnění"
-                }
+                }.to_string()
             }
         }
     }
