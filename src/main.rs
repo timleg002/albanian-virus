@@ -6,7 +6,7 @@ mod test;
 use trans::{Messages, Locale};
 use windows::Win32::{
     UI::WindowsAndMessaging::{
-        IDNO, IDCANCEL, MessageBoxA, MB_ICONINFORMATION, MB_YESNOCANCEL, MB_ICONWARNING
+        IDNO, IDCANCEL, MessageBoxW, MB_ICONINFORMATION, MB_YESNOCANCEL, MB_ICONWARNING
     }, 
     Foundation::HWND,
     Globalization::GetUserDefaultLocaleName
@@ -28,7 +28,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     );
 
     unsafe {
-        let result = MessageBoxA(HWND(0), info, caption, MB_ICONWARNING | MB_YESNOCANCEL);
+        let result = MessageBoxW(HWND(0), info, caption, MB_ICONWARNING | MB_YESNOCANCEL);
 
         match result {
             IDNO | IDCANCEL => {
@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     Messages::ApologyText.translate(&locale)
                 );
 
-                MessageBoxA(HWND(0), info, caption, MB_ICONINFORMATION);
+                MessageBoxW(HWND(0), info, caption, MB_ICONINFORMATION);
             }
             _ => {}
         }
