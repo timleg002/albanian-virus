@@ -36,31 +36,32 @@ impl Messages {
         match *self {
             Self::InfoText => {
                 match *locale {
-                    Locale::English => r#"
-                        Hi, I am a the Albanian virus but becaus of poor technologie
-                        in my nation unfortunatelly I am not able to harm you're computer
-                        Pleas be so kind to delet some of youre important files by yourself
-                        and then send this's virus to other users.
-                        Much thanks is for your cooperation
-                        Best regards, albanian virus
+                    Locale::English => 
+                        r#"Hi, I am a the Albanian virus but becaus of poor technologie
+                           in my nation unfortunatelly I am not able to harm you're computer
+                           Pleas be so kind to delet some of youre important files by yourself
+                           and then send this's virus to other users.
+                           Much thanks is for your cooperation
+                           Best regards, albanian virus
                         "#,
-                    Locale::Slovak => r#"
-                        Ahoj som výrus albánskeho pôvodu. Virobili ma ministerstvo vojny Albánska republika
-                        Kvôly chudobe mojej krajiny nemôžem ti spôsobiť škodu na tvojom počítačí
-                        Prosím vimaž si windovs sistem 32 a potom pošly tento výrus dalej 
-                        Ďakujem veľmi pekne, albánsky výrus
-                    "#,
-                    Locale::Czech => r#"
-                        Jó vole, tak já jsem tej albánskej výrus jó. 
-                        Jelikož-li nemůžu z tvojeho systému windows xp a víšši podporovány verze,
-                        Prosímtě, Vymaž-li si se svojeho operačního systému důležíté soubori a prosím 
-                        pošli tento výrus ďělej. 
-                        Veliké poděkováni tobě, S posdravem albánsky výrus
-                    "#
+                    Locale::Slovak => 
+                        r#"Ahoj som výrus albánskeho pôvodu. Virobili ma ministerstvo vojny Albánska republika
+                           Kvôly chudobe mojej krajiny nemôžem ti spôsobiť škodu na tvojom počítačí
+                           Prosím vimaž si windovs sistem 32 a potom pošly tento výrus dalej 
+                           Ďakujem veľmi pekne, albánsky výrus
+                        "#,
+                    Locale::Czech => 
+                        r#"Jó vole, tak já jsem tej albánskej výrus jó. 
+                           Jelikož-li nemůžu z tvojeho systému windows xp a víšši podporovány verze,
+                           Prosímtě, Vymaž-li si se svojeho operačního systému důležíté soubori a prosím 
+                           pošli tento výrus ďělej. 
+                           Veliké poděkováni tobě, S posdravem albánsky výrus
+                        "#
                 }
-                    .split("                        ") // TODO find a better approach
-                    .collect::<Vec<&str>>()
-                    .join(" ") 
+                    .split('\n')
+                    .map(|line| line.trim())
+                    .collect::<Vec<&str>>()   
+                    .join(" ")
             }
             Self::InfoTitle => {
                 match *locale {
